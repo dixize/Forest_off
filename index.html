@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FOREST | Ultra Premium Experience</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Montserrat:wght@100;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#010501] text-white selection:bg-green-600/40 overflow-x-hidden">
+
+    <header class="fixed top-0 left-0 w-full z-[100] transition-all duration-700" id="header-nav">
+        <div class="max-w-[1600px] mx-auto h-28 flex items-center justify-between px-8 md:px-16">
+            
+            <div class="nav-left flex-1">
+                <a href="https://wa.me/79000000000" target="_blank" class="cyber-btn">
+                    <span class="btn-line"></span>
+                    <span class="btn-text">whatsapp</span>
+                </a>
+            </div>
+
+            <div class="nav-center flex-none text-center group cursor-pointer" onclick="navigateTo('menu')">
+                <h1 class="forest-logo">FOREST</h1>
+                <div class="logo-bar"></div>
+            </div>
+
+            <div class="nav-right flex-1 flex justify-end">
+                <button onclick="openModal()" class="cyber-btn">
+                    <span class="btn-line"></span>
+                    <span class="btn-text">telegram</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="app-router">
+        
+        <section id="view-home" class="view active">
+            <div class="hero-wrap">
+                <img src="https://avatars.mds.yandex.net/i?id=659928258fe31a142d24f12dc2d45f9898c3036e-10360812-images-thumbs&n=13" class="hero-parallax">
+                <div class="hero-gradient"></div>
+                <div class="hero-badge animate-bounce">Scroll to explore</div>
+            </div>
+
+            <div class="wood-footer-grid">
+                <div class="wood-row">
+                    <div class="wood-col"><img src="https://avatars.mds.yandex.net/i?id=9c18f11d40e559e5c4666c43c2e8ed3dff5c2fa4-5341210-images-thumbs&n=13"></div>
+                    <div class="wood-col"><img src="https://avatars.mds.yandex.net/i?id=9c18f11d40e559e5c4666c43c2e8ed3dff5c2fa4-5341210-images-thumbs&n=13"></div>
+                    <div class="wood-col"><img src="https://avatars.mds.yandex.net/i?id=9c18f11d40e559e5c4666c43c2e8ed3dff5c2fa4-5341210-images-thumbs&n=13"></div>
+                    <div class="wood-col"><img src="https://avatars.mds.yandex.net/i?id=9c18f11d40e559e5c4666c43c2e8ed3dff5c2fa4-5341210-images-thumbs&n=13"></div>
+                </div>
+                
+                <div class="wood-overlay">
+                    <h2 class="wood-slogan">the website <br> about forest save</h2>
+                    <div class="cta-circle" onclick="navigateTo('menu')">
+                        <svg viewBox="0 0 100 100"><path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/></svg>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-menu" class="view hidden">
+            <div class="max-w-7xl mx-auto pt-44 pb-32 px-6">
+                <div class="menu-header mb-20">
+                    <h3 class="text-green-500 font-black tracking-[0.6em] text-[10px] uppercase mb-4">Deep Nature Archive</h3>
+                    <h2 class="text-6xl md:text-8xl font-serif italic text-white/10 leading-none">Catalog</h2>
+                </div>
+
+                <nav class="flex flex-wrap gap-8 border-b border-white/5 mb-16">
+                    <button onclick="changeCategory('Flora')" class="tab-link active" id="tab-Flora">Flora</button>
+                    <button onclick="changeCategory('Fauna')" class="tab-link" id="tab-Fauna">Fauna</button>
+                    <button onclick="changeCategory('Eco')" class="tab-link" id="tab-Eco">Ecosystem</button>
+                    <button onclick="changeCategory('Help')" class="tab-link" id="tab-Help">Protection</button>
+                </nav>
+
+                <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    </div>
+            </div>
+        </section>
+
+        <section id="view-detail" class="view hidden">
+            <div id="detail-content"></div>
+        </section>
+
+    </main>
+
+    <div id="modal-tg" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 bg-black/95 backdrop-blur-2xl">
+        <div class="bg-[#040a04] border border-green-900/30 w-full max-w-2xl rounded-[40px] p-12 relative">
+            <button onclick="closeModal()" class="absolute top-10 right-10 text-green-700 hover:text-white transition-all"><i class="fa-solid fa-xmark text-2xl"></i></button>
+            <h3 class="text-4xl font-serif italic mb-8">Get in Touch</h3>
+            <div class="grid grid-cols-1 gap-6">
+                <div class="field">
+                    <label class="field-label">Full Name</label>
+                    <input type="text" id="tg-name" placeholder="John Doe" class="field-input">
+                </div>
+                <div class="field">
+                    <label class="field-label">Purpose of Contact</label>
+                    <textarea id="tg-msg" rows="4" placeholder="How can you help the forest?" class="field-input"></textarea>
+                </div>
+                <button onclick="sendMsg()" class="send-btn">Process Request</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
